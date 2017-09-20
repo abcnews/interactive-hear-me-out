@@ -1,13 +1,18 @@
 {
   "name": "interactive-hear-me-out",
   "version": "1.0.0",
-  "description": "A project generated from aunty's preact-app template.",
+  "description": "A project generated from aunty's basic-app template.",
   "license": "MIT",
   "private": true,
   "contributors": [
     "Colin Gourlay <Gourlay.Colin@abc.net.au>"
   ],
-  "aunty": "preact-app",
+  "aunty": {
+    "type": "basic-app",
+    "devServer": {
+      "hot": false
+    }
+  },
   "scripts": {
     "start": "aunty serve"
   },
@@ -15,7 +20,7 @@
     "@abcnews/aunty": "5.2.x"
   },
   "dependencies": {
-    "preact": "^8.2.5",
-    "preact-compat": "^3.17.0"
+    "bel": "^5.1.1",
+    "scroll-into-view": "^1.9.1"
   }
 }

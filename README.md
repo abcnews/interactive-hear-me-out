@@ -1,6 +1,6 @@
 # interactive-hear-me-out
 
-A project generated from [aunty](https://github.com/abcnews/aunty)'s `preact-app` template.
+A project generated from [aunty](https://github.com/abcnews/aunty)'s `basic-app` template.
 
 ## Authors
 
