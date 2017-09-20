@@ -1,3 +1,4 @@
+require('./global.scss');
 const App = require('./components/App');
 
 function init(api) {
