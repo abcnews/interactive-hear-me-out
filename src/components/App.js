@@ -44,9 +44,11 @@ function App({before, options, nextEl}) {
         activeIndex = nextIndex;
 
         view.embed.querySelector('.VideoPlayer').api.play();
-        view.embed.querySelector('.VideoPlayer-playback').focus();
         isScrolling = true;
-        scrollIn(view.embed, EMBED_IN_CONFIG, () => isScrolling = false);
+        scrollIn(view.embed, EMBED_IN_CONFIG, () => {
+          isScrolling = false;
+          view.embed.querySelector('.VideoPlayer-playback').focus();
+        });
 
         if (view.nextEl && !view.onEnd) {
           view.onEnd = () => scrollIn(view.nextEl, NEXT_IN_CONFIG);
