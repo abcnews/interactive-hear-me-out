@@ -3,8 +3,41 @@
   margin-bottom: 0 !important;
 
   &:not(.isUsed) {
+    position: relative;
+
     > :last-child {
-      margin-bottom: 100vh;
+      padding-bottom: 100vh;
+    }
+
+    &::before,
+    &::after {
+      transform: translate(-50%, 0);
+      position: absolute;
+      left: 50%;      
+    }
+
+    &::before {
+      content: "I wonder if they know the storyʼs up there?";
+      bottom: 7rem;
+      border-radius: .5rem;
+      padding: .5rem 1rem;
+      width: 13rem;
+      background-color: #fff;
+      font-family: ABCSans;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    &::after {
+      content: "";
+      bottom: 2rem;
+      padding-bottom: 50%;
+      width: 8rem;
+      height: 0;
+      background-image: url('./up.png');
+      background-position: bottom center;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
     }
 
     & ~ * {
