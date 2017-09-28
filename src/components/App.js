@@ -77,8 +77,8 @@ function App({before, options, nextEl}) {
 
   before.forEach(el => el.classList.add(styles.before));
 
-  const tapeBGs = [].concat(TAPE_BGS);
-  const cardBGs = [].concat(CARD_BGS);
+  const tapeBGs = [...TAPE_BGS];
+  const cardBGs = [...CARD_BGS];
 
   const views = options.map((option, index) => {
     const id = nextId++;
@@ -97,7 +97,7 @@ function App({before, options, nextEl}) {
           onclick=${activate.bind(null, index)}>
           <div class="${styles.tape}" style="background-image: url(${tapeBG})">${option.prefix ? `${option.prefix}:` : ''}</div>
           <div class="${styles.card}" style="transform: rotate(${angle}deg); background-color: ${cardBG}">
-            <div class="${option.label.length < 40 ? styles.handwriting : styles.smallerHandwriting}">${option.label}</div>
+            <div class="${option.label.length < 50 ? styles.handwriting : styles.smallerHandwriting}">${option.label}</div>
           </div>
         </button>
       `,
