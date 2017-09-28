@@ -14,6 +14,18 @@ const NEXT_IN_CONFIG = {
   delay: 500
 };
 
+const TAPE_BGS = [
+  require('./tape-purple.png'),
+  require('./tape-red.png'),
+  require('./tape-teal.png')
+];
+
+const CARD_BGS = [
+  '#FFFFFF',
+  '#F5F5F5',
+  '#FFFCF2'
+];
+
 let nextId = 0;
 let isScrolling;
 
@@ -32,6 +44,7 @@ function App({before, options, nextEl}) {
       views[activeIndex].embed.querySelector('.VideoPlayer').api.pause();
 
       activeIndex = null;
+      app.classList.remove(styles.hasActive);
 
       return;
     }
@@ -59,13 +72,20 @@ function App({before, options, nextEl}) {
     });
 
     app.classList.add(styles.isUsed);
+    app.classList.add(styles.hasActive);
   }
 
   before.forEach(el => el.classList.add(styles.before));
 
+  const tapeBGs = [].concat(TAPE_BGS);
+  const cardBGs = [].concat(CARD_BGS);
+
   const views = options.map((option, index) => {
     const id = nextId++;
-    
+    const angle = (.5 + Math.random()) * (Math.random() > .5 ? 1 : -1);
+    const tapeBG = tapeBGs.length ? tapeBGs.splice(Math.floor(Math.random() * tapeBGs.length), 1) : TAPE_BGS[0];
+    const cardBG = cardBGs.length ? cardBGs.splice(Math.floor(Math.random() * cardBGs.length), 1) : CARD_BGS[0];
+
     return {
       tab: html`
         <button
@@ -75,8 +95,10 @@ function App({before, options, nextEl}) {
           aria-controls="${styles.panel}_${id}"
           aria-selected="false"
           onclick=${activate.bind(null, index)}>
-          ${option.prefix ? html`<small>${option.prefix}:</small>`  : null}
-          <em>${option.label}</em>
+          <div class="${styles.tape}" style="background-image: url(${tapeBG})">${option.prefix ? `${option.prefix}:` : ''}</div>
+          <div class="${styles.card}" style="transform: rotate(${angle}deg); background-color: ${cardBG}">
+            <div class="${option.label.length < 40 ? styles.handwriting : styles.smallerHandwriting}">${option.label}</div>
+          </div>
         </button>
       `,
       panel: html`

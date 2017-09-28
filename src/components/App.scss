@@ -49,25 +49,25 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 0 .5rem;
+    padding: 0;
 
-    > * {    
-      flex-grow: 1;
+    > * {
+      display: inline-block;
       margin: 0 .5rem;
       padding: 0;
+      width: 320px;
+      max-width: calc(100% - 1rem);
       background-image: none;
-
-      @media (min-width: 24rem) {
-        min-width: 18rem;
-      }
-
-      @media (min-width: 39rem) {
-        &:last-child:nth-of-type(odd) {
-          max-width: 27rem;
-        }
+      
+      @media (min-width: 61.25rem) {
+        margin: 0 3rem;
       }
     }
   }
+}
+
+.hasActive {
+  
 }
 
 .isUsed {
@@ -79,47 +79,73 @@
 }
 
 .tab {
-  display: block;
-  margin: 1rem 0;
-  border: .25rem solid transparent;
-  padding: .5rem;
-  width: 100%;
-  height: 90%;
-  background-color: #5f6c6f;
-  color: white;
-  font-size: 1.5rem;
+  display: inline-block;
+  position: relative;
+  margin: 1.5rem 0;
+  outline: none;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  transition: opacity .5s;
 
   &[aria-selected="false"] {
     cursor: pointer;
+
+    .hasActive & {
+      opacity: .33;
+    }
   }
 
   &[aria-selected="true"] {
-    border-color: currentColor;
+    
   }
+}
 
-  > * {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.tape {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  padding: .5rem 1.5rem;
+  min-width: 12rem;
+  min-height: 2.5rem;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: white;
+  font-family: ABCSerif, sans-serif;
+  font-size: 1.125rem;
+  font-style: italic;
+  white-space: nowrap;
+}
 
-    @media (min-width: 43.75rem) {
-      max-width: 18rem;
-    }
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: .125rem;
+  padding: 1.5rem 1rem 1rem;
+  min-height: 180px;
+  background-color: white;
+  background-image: url(./paper.png);
+  background-position: 0 -1.5rem;
+  background-size: 120% auto;
 
-    @media (min-width: 61.25rem) {
-      max-width: 27rem;
-    }
+  :focus & {
+    outline: auto;
+    outline: -webkit-focus-ring-color auto 5px;
   }
+}
 
-  small {
-    margin-bottom: .5rem;
-    font-size: 1.125rem;
-  }
+.handwriting {
+  color: black;
+  font-size: 1.75rem;
+  line-height: 1.25;
+}
 
-  em {
-    font-family: ABCSerif, sans-serif;
-    line-height: 1.5;
-  }
+.smallerHandwriting {
+  composes: handwriting;
+  font-size: 1.5rem;
 }
 
 @keyframes enter {
