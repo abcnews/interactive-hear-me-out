@@ -139,13 +139,45 @@
 
 .handwriting {
   color: black;
-  font-size: 1.75rem;
+  // font-size: 1.75rem;
+  // line-height: 1.25;
+
+  // Caveat
+  // font-family: 'Caveat', cursive;
+  // font-size: 2.25rem;
+  // line-height: 1.25;
+
+  // Kalam
+  // font-family: 'Kalam', cursive;
+  // font-size: 2rem;
+  // line-height: 1.25;
+
+  // Permanent Marker
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2.25rem;
   line-height: 1.25;
+
+  // Sue Ellen Francisco
+  // font-family: 'Sue Ellen Francisco', cursive;
+  // font-size: 2.75rem;
+  // line-height: 1.25;
 }
 
 .smallerHandwriting {
   composes: handwriting;
+  // font-size: 1.5rem;
+
+  // Caveat
+  // font-size: 1.75rem;
+
+  // Kalam
+  // font-size: 1.5rem;
+
+  // Permanent Marker
   font-size: 1.5rem;
+
+  // Sue Ellen Francisco
+  // font-size: 2.25rem;
 }
 
 @keyframes enter {
