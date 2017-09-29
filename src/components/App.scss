@@ -17,7 +17,7 @@
     }
 
     &::before {
-      content: "I wonder if they know the storyʼs up there?";
+      content: "I hope they know they can tap one of those cards up there";
       bottom: 7rem;
       border-radius: .5rem;
       padding: .5rem 1rem;
@@ -95,10 +95,6 @@
       opacity: .33;
     }
   }
-
-  &[aria-selected="true"] {
-    
-  }
 }
 
 .tape {
@@ -138,45 +134,14 @@
 
 .handwriting {
   color: black;
-  // font-size: 1.75rem;
-  // line-height: 1.25;
-
-  // Caveat
-  // font-family: 'Caveat', cursive;
-  // font-size: 2.25rem;
-  // line-height: 1.25;
-
-  // Kalam
-  // font-family: 'Kalam', cursive;
-  // font-size: 2rem;
-  // line-height: 1.25;
-
-  // Permanent Marker
-  font-family: 'Permanent Marker', cursive;
-  font-size: 2.25rem;
+  font-family: 'Sue Ellen Francisco', cursive;
+  font-size: 2.75rem;
   line-height: 1.25;
-
-  // Sue Ellen Francisco
-  // font-family: 'Sue Ellen Francisco', cursive;
-  // font-size: 2.75rem;
-  // line-height: 1.25;
 }
 
 .smallerHandwriting {
   composes: handwriting;
-  // font-size: 1.5rem;
-
-  // Caveat
-  // font-size: 1.75rem;
-
-  // Kalam
-  // font-size: 1.5rem;
-
-  // Permanent Marker
-  font-size: 1.5rem;
-
-  // Sue Ellen Francisco
-  // font-size: 2.25rem;
+  font-size: 2.25rem;
 }
 
 @keyframes enter {
