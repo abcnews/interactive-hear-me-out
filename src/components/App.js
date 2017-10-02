@@ -21,6 +21,7 @@ let nextId = 0;
 let isScrolling;
 
 function App({ before, options, nextEl }) {
+  const isFirst = nextId === 0;
   let activeIndex;
 
   function activate(nextIndex) {
@@ -111,7 +112,7 @@ function App({ before, options, nextEl }) {
   });
 
   const app = html`
-    <div class="${styles.root} u-full">
+    <div class="${styles.root}${isFirst ? ` ${styles.isFirst}` : ''} u-full">
       <div class="u-layout u-richtext-invert">
         ${before}
         <ul class="u-pull" role="tablist">

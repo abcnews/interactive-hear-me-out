@@ -69,11 +69,24 @@
 .hasActive {
 }
 
+.isFirst {
+}
+
 .isUsed {
 }
 
 .before {
   text-align: center;
+
+  &::after {
+    content: 'choose a question card';
+    display: block;
+    margin-top: 0.375rem;
+    font-family: ABCSerif, sans-serif;
+    font-size: 0.875rem;
+    font-style: italic;
+    font-weight: normal;
+  }
 }
 
 .tab {
@@ -88,6 +101,17 @@
 
   &[aria-selected='false'] {
     cursor: pointer;
+
+    .root.isFirst:not(.isUsed) [role='tablist'] > :first-child > &::after {
+      content: '';
+      position: absolute;
+      right: 1rem;
+      bottom: 0.25rem;
+      width: 51px;
+      height: 66px;
+      background-image: url(./hand.png);
+      background-repeat: no-repeat;
+    }
 
     .hasActive & {
       opacity: 0.33;
