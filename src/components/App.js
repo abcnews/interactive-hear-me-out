@@ -14,24 +14,14 @@ const NEXT_IN_CONFIG = {
   delay: 500
 };
 
-const TAPE_BGS = [
-  require('./tape-purple.png'),
-  require('./tape-red.png'),
-  require('./tape-teal.png')
-];
-
-const CARD_BGS = [
-  '#FFFFFF',
-  '#F5F5F5',
-  '#FFFCF2'
-];
+const TAPE_BGS = [require('./tape-a.png'), require('./tape-b.png'), require('./tape-c.png')];
+const CARD_BGS = [require('./card-a.png'), require('./card-b.png'), require('./card-c.png')];
 
 let nextId = 0;
 let isScrolling;
 
-function App({before, options, nextEl}) {
+function App({ before, options, nextEl }) {
   let activeIndex;
-
 
   function activate(nextIndex) {
     if (isScrolling) {
@@ -67,7 +57,6 @@ function App({before, options, nextEl}) {
           view.onEnd = () => scrollIn(view.nextEl, NEXT_IN_CONFIG);
           view.embed.querySelector('video').addEventListener('ended', view.onEnd);
         }
-        
       }
     });
 
@@ -82,7 +71,7 @@ function App({before, options, nextEl}) {
 
   const views = options.map((option, index) => {
     const id = nextId++;
-    const angle = (.5 + Math.random()) * (Math.random() > .5 ? 1 : -1);
+    const angle = (0.5 + Math.random()) * (Math.random() > 0.5 ? 1 : -1);
     const tapeBG = tapeBGs.length ? tapeBGs.splice(Math.floor(Math.random() * tapeBGs.length), 1) : TAPE_BGS[0];
     const cardBG = cardBGs.length ? cardBGs.splice(Math.floor(Math.random() * cardBGs.length), 1) : CARD_BGS[0];
 
@@ -95,9 +84,13 @@ function App({before, options, nextEl}) {
           aria-controls="${styles.panel}_${id}"
           aria-selected="false"
           onclick=${activate.bind(null, index)}>
-          <div class="${styles.tape}" style="background-image: url(${tapeBG})">${option.prefix ? `${option.prefix}:` : ''}</div>
-          <div class="${styles.card}" style="transform: rotate(${angle}deg); background-color: ${cardBG}">
-            <div class="${option.label.length < 40 ? styles.handwriting : styles.smallerHandwriting}">${option.label}</div>
+          <div class="${styles.tape}" style="background-image: url(${tapeBG})">${option.prefix
+        ? `${option.prefix}:`
+        : ''}</div>
+          <div class="${styles.card}" style="transform: rotate(${angle}deg); background-image: url(${cardBG})">
+            <div class="${option.label.length < 40
+              ? styles.handwriting
+              : styles.smallerHandwriting}">${option.label}</div>
           </div>
         </button>
       `,
@@ -122,9 +115,11 @@ function App({before, options, nextEl}) {
       <div class="u-layout u-richtext-invert">
         ${before}
         <ul class="u-pull" role="tablist">
-          ${views.map(view => html`
+          ${views.map(
+            view => html`
           <li>${view.tab}</li>
-          `)}
+          `
+          )}
         </ul>
         ${views.map(view => view.panel)}
       </div>

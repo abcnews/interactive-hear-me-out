@@ -2,21 +2,17 @@ require('./global.scss');
 const App = require('./components/App');
 
 function init(api) {
-  api.utils.anchors.getSections('choice')
-  .forEach(section => {
+  api.utils.anchors.getSections('choice').forEach(section => {
     const before = [];
     const options = [];
 
-    section.betweenNodes
-    .filter(node => api.utils.dom.isElement(node))
-    .forEach(el => {
+    section.betweenNodes.filter(node => api.utils.dom.isElement(node)).forEach(el => {
       if (el.className.indexOf('VideoEmbed') === 0) {
         const caption = el.querySelector('.Caption');
-        const [prefix, label] =
-           caption.querySelector('a').textContent.split(': ');
+        const [prefix, label] = caption.querySelector('a').textContent.split(': ');
 
         caption.parentElement.removeChild(caption);
-        
+
         options.push({
           prefix: label && prefix,
           label: label || prefix,
@@ -31,11 +27,14 @@ function init(api) {
     });
 
     if (options.length) {
-      section.substituteWith(App({
-        before,
-        options,
-        nextEl: section.endNode.nextSibling
-      }), []);
+      section.substituteWith(
+        App({
+          before,
+          options,
+          nextEl: section.endNode.nextSibling
+        }),
+        []
+      );
     }
   });
 }

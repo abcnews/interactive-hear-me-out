@@ -13,14 +13,14 @@
     &::after {
       transform: translate(-50%, 0);
       position: absolute;
-      left: 50%;      
+      left: 50%;
     }
 
     &::before {
-      content: "I hope they know they can tap one of those cards up there";
+      content: 'I hope they know they can tap one of those cards up there';
       bottom: 7rem;
-      border-radius: .5rem;
-      padding: .5rem 1rem;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
       width: 13rem;
       background-color: #fff;
       font-family: ABCSans;
@@ -29,7 +29,7 @@
     }
 
     &::after {
-      content: "";
+      content: '';
       bottom: 2rem;
       padding-bottom: 50%;
       width: 8rem;
@@ -45,7 +45,7 @@
     }
   }
 
-  [role="tablist"] {
+  [role='tablist'] {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -53,25 +53,23 @@
 
     > * {
       display: inline-block;
-      margin: 0 .5rem;
+      margin: 0;
       padding: 0;
       width: 320px;
-      max-width: calc(100% - 1rem);
       background-image: none;
-      
+
       @media (min-width: 61.25rem) {
-        margin: 0 3rem;
+        margin: 0 2rem;
+        width: 400px;
       }
     }
   }
 }
 
 .hasActive {
-  
 }
 
 .isUsed {
-  
 }
 
 .before {
@@ -86,13 +84,13 @@
   border: none;
   padding: 0;
   background-color: transparent;
-  transition: opacity .5s;
+  transition: opacity 0.5s;
 
-  &[aria-selected="false"] {
+  &[aria-selected='false'] {
     cursor: pointer;
 
     .hasActive & {
-      opacity: .33;
+      opacity: 0.33;
     }
   }
 }
@@ -103,7 +101,7 @@
   top: 0;
   left: 50%;
   z-index: 1;
-  padding: .5rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   min-width: 12rem;
   min-height: 2.5rem;
   background-repeat: no-repeat;
@@ -119,12 +117,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: .125rem;
-  padding: 1.5rem 1rem 1rem;
-  min-height: 180px;
-  background-color: white;
-  background-image: url(./paper.png);
-  background-size: 120% auto;
+  min-height: 200px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+
+  @media (min-width: 61.25rem) {
+    min-height: 240px;
+  }
 
   :focus & {
     outline: auto;
@@ -133,15 +132,26 @@
 }
 
 .handwriting {
+  margin: 1.25rem 0 1.5rem;
+  padding: 0 1.5rem;
   color: black;
   font-family: 'Sue Ellen Francisco', cursive;
   font-size: 2.75rem;
   line-height: 1.25;
+
+  @media (min-width: 61.25rem) {
+    padding: 0 2rem;
+    font-size: 3.25rem;
+  }
 }
 
 .smallerHandwriting {
   composes: handwriting;
   font-size: 2.25rem;
+
+  @media (min-width: 61.25rem) {
+    font-size: 2.75rem;
+  }
 }
 
 @keyframes enter {
@@ -156,7 +166,7 @@
 .panel {
   animation: enter 1s ease forwards;
 
-  &[aria-hidden="true"] {
+  &[aria-hidden='true'] {
     display: none;
   }
 
@@ -188,4 +198,3 @@
     margin-bottom: 0;
   }
 }
-
