@@ -105,12 +105,13 @@
     .root.isFirst:not(.isUsed) [role='tablist'] > :first-child > &::after {
       content: '';
       position: absolute;
-      right: 1rem;
-      bottom: 0.25rem;
-      width: 51px;
-      height: 66px;
-      background-image: url(./hand.png);
+      right: 0;
+      bottom: 0;
+      width: 6.25rem;
+      height: 6.25rem;
+      background-image: url(./tap.svg);
       background-repeat: no-repeat;
+      background-size: 100%;
     }
 
     .hasActive & {
