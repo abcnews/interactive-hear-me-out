@@ -41,21 +41,33 @@ function App({ before, options, nextEl }) {
     }
 
     views.forEach((view, index) => {
+      const api = view.embed.querySelector('.VideoPlayer').api;
+
       view.tab.setAttribute('aria-selected', nextIndex === index ? 'true' : 'false');
       view.panel.setAttribute('aria-hidden', nextIndex === index ? 'false' : 'true');
 
       if (nextIndex === index) {
         activeIndex = nextIndex;
 
-        view.embed.querySelector('.VideoPlayer').api.play();
-        isScrolling = true;
-        scrollIn(view.embed, EMBED_IN_CONFIG, () => {
-          isScrolling = false;
-          view.embed.querySelector('.VideoPlayer-playback').focus();
-        });
+        api.play();
+
+        if (!api.hasNativeUI) {
+          isScrolling = true;
+          scrollIn(view.embed, EMBED_IN_CONFIG, () => {
+            isScrolling = false;
+            view.embed.querySelector('.VideoPlayer-playback').focus();
+          });
+        }
 
         if (view.nextEl && !view.onEnd) {
-          view.onEnd = () => scrollIn(view.nextEl, NEXT_IN_CONFIG);
+          view.onEnd = () => {
+            if (!api.hasNativeUI) {
+              isScrolling = true;
+              scrollIn(view.nextEl, NEXT_IN_CONFIG, () => {
+                isScrolling = false;
+              });
+            }
+          };
           view.embed.querySelector('video').addEventListener('ended', view.onEnd);
         }
       }
