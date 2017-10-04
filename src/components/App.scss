@@ -102,16 +102,27 @@
   &[aria-selected='false'] {
     cursor: pointer;
 
-    .root.isFirst:not(.isUsed) [role='tablist'] > :first-child > &::after {
+    .root.isFirst:not(.isUsed) [role='tablist'] > * > &::after {
       content: '';
       position: absolute;
-      right: 0;
       bottom: 0;
-      width: 6.25rem;
-      height: 6.25rem;
+      right: 0;
+      width: 5rem;
+      height: 5rem;
       background-image: url(./tap.svg);
       background-repeat: no-repeat;
       background-size: 100%;
+
+      @media (min-width: 43.75rem) {
+        width: 6.25rem;
+        height: 6.25rem;
+      }
+    }
+
+    .root.isFirst:not(.isUsed) [role='tablist'] > :first-child > &::after {
+      transform: scale(-1, 1);
+      right: auto;
+      left: 0;
     }
 
     .hasActive & {
