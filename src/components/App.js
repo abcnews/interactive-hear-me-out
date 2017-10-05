@@ -24,7 +24,7 @@ function App({ before, options, nextEl }) {
   const isFirst = nextId === 0;
   let activeIndex;
 
-  function activate(nextIndex) {
+  function activate(nextIndex, event) {
     if (isScrolling) {
       return;
     }
@@ -75,6 +75,16 @@ function App({ before, options, nextEl }) {
 
     app.classList.add(styles.isUsed);
     app.classList.add(styles.hasActive);
+
+    // Track activations
+    if (window.ABC && ABC.News && ABC.News.Logger) {
+      ABC.News.Logger.log(
+        'interactive-hear-me-out',
+        (event.currentTarget || event.target).textContent.replace(':', ': '),
+        { path: location.pathname },
+        true
+      );
+    }
   }
 
   before.forEach(el => el.classList.add(styles.before));
