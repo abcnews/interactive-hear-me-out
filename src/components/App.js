@@ -81,10 +81,11 @@ function App({ before, options, nextEl }) {
 
   const tapeBGs = [...TAPE_BGS];
   const cardBGs = [...CARD_BGS];
+  const oddRotationDirection = Math.random() > 0.5 ? 1 : -1;
 
   const views = options.map((option, index) => {
     const id = nextId++;
-    const angle = (0.5 + Math.random()) * (Math.random() > 0.5 ? 1 : -1);
+    const angle = (0.5 + Math.random()) * (index % 2 ? oddRotationDirection : oddRotationDirection * -1);
     const tapeBG = tapeBGs.length ? tapeBGs.splice(Math.floor(Math.random() * tapeBGs.length), 1) : TAPE_BGS[0];
     const cardBG = cardBGs.length ? cardBGs.splice(Math.floor(Math.random() * cardBGs.length), 1) : CARD_BGS[0];
 
