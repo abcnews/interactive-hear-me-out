@@ -78,7 +78,7 @@
 .before {
   text-align: center;
 
-  &::after {
+  .root.isFirst:not(.isUsed) &::after {
     content: 'choose a question card';
     display: block;
     margin-top: 1.5rem;
