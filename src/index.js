@@ -40,7 +40,17 @@ function init(api) {
   });
 
   api.utils.anchors.getMarkers('signup').forEach(marker => {
-    marker.substituteWith(SignUp());
+    const nextEl = marker.node.nextElementSibling || document.createElement('div');
+    const className = nextEl.className.match(/u-richtext(?:-invert)?/);
+
+    if (className) {
+      marker.substituteWith(
+        SignUp({
+          formEl: nextEl,
+          className
+        })
+      );
+    }
   });
 }
 
