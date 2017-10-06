@@ -1,6 +1,6 @@
 const html = require('bel');
 const scrollIntoView = require('scroll-into-view');
-const styles = require('./App.scss');
+const styles = require('./Choice.scss');
 
 const EMBED_IN_CONFIG = {
   delay: 250
@@ -20,7 +20,7 @@ const CARD_BGS = [require('./card-a.png'), require('./card-b.png'), require('./c
 let nextId = 0;
 let isScrolling;
 
-function App({ before, options, nextEl }) {
+function Choice({ before, options, nextEl }) {
   const isFirst = nextId === 0;
   let activeIndex;
 
@@ -35,7 +35,7 @@ function App({ before, options, nextEl }) {
       views[activeIndex].embed.querySelector('.VideoPlayer').api.pause();
 
       activeIndex = null;
-      app.classList.remove(styles.hasActive);
+      root.classList.remove(styles.hasActive);
 
       return;
     }
@@ -73,8 +73,8 @@ function App({ before, options, nextEl }) {
       }
     });
 
-    app.classList.add(styles.isUsed);
-    app.classList.add(styles.hasActive);
+    root.classList.add(styles.isUsed);
+    root.classList.add(styles.hasActive);
 
     // Track activations
     if (window.ABC && ABC.News && ABC.News.Logger) {
@@ -134,7 +134,7 @@ function App({ before, options, nextEl }) {
     };
   });
 
-  const app = html`
+  const root = html`
     <div class="${styles.root}${isFirst ? ` ${styles.isFirst}` : ''} u-full">
       <div class="u-layout u-richtext-invert">
         ${before}
@@ -150,11 +150,11 @@ function App({ before, options, nextEl }) {
     </div>
   `;
 
-  return app;
+  return root;
 }
 
 function scrollIn(el, options = {}, callback) {
   setTimeout(scrollIntoView.bind(null, el, options, callback), options.delay);
 }
 
-module.exports = App;
+module.exports = Choice;

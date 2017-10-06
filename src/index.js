@@ -1,5 +1,6 @@
 require('./global.scss');
-const App = require('./components/App');
+const Choice = require('./components/Choice');
+const SignUp = require('./components/SignUp');
 
 function init(api) {
   api.utils.anchors.getSections('choice').forEach(section => {
@@ -28,7 +29,7 @@ function init(api) {
 
     if (options.length) {
       section.substituteWith(
-        App({
+        Choice({
           before,
           options,
           nextEl: section.endNode.nextSibling
@@ -36,6 +37,10 @@ function init(api) {
         []
       );
     }
+  });
+
+  api.utils.anchors.getMarkers('signup').forEach(marker => {
+    marker.substituteWith(SignUp());
   });
 }
 
