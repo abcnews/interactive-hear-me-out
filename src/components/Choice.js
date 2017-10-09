@@ -52,14 +52,14 @@ function Choice({ before, options, nextEl }) {
 
         api.play();
 
-        if (portraitOrientationMQL.matches && !api.hasNativeUI) {
+        if (!api.hasNativeUI) {
           isScrolling = true;
           scrollIn(view.embed, EMBED_IN_CONFIG, () => {
             isScrolling = false;
             view.embed.querySelector('.VideoPlayer-playback').focus();
           });
 
-          if (view.nextEl && !view.onEnd) {
+          if (view.nextEl && portraitOrientationMQL.matches && !view.onEnd) {
             view.onEnd = () => {
               isScrolling = true;
               scrollIn(view.nextEl, NEXT_IN_CONFIG, () => {
