@@ -26,6 +26,7 @@
 
       & > * {
         display: inline-block;
+        vertical-align: top;
       }
     }
 
@@ -34,7 +35,9 @@
       border: 0;
       border-radius: 0;
       padding: 0.5rem 0.5rem !important;
+      height: 2rem;
       font-size: 0.8rem;
+      line-height: 1rem;
     }
   }
 }
