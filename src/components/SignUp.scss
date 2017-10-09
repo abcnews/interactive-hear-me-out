@@ -10,6 +10,12 @@
   background-repeat: no-repeat;
   background-size: 100% auto;
 
+  // IE fallback
+  _:-ms-fullscreen,
+  :root & {
+    background-image: url(./sign-up.png);
+  }
+
   & + * {
     br {
       display: none;
