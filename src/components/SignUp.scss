@@ -3,10 +3,32 @@
 }
 
 .graphic {
-  margin: 2rem auto 0;
+  margin: 4rem auto 0;
   width: 17.5rem;
   height: 16rem;
   background-image: url(./sign-up.svg);
   background-repeat: no-repeat;
   background-size: 100% auto;
+
+  & + * {
+    br {
+      display: none;
+    }
+
+    form {
+      text-align: center;
+
+      & > * {
+        display: inline-block;
+      }
+    }
+
+    input,
+    button {
+      border: 0;
+      border-radius: 0;
+      padding: 0.5rem 0.5rem !important;
+      font-size: 0.8rem;
+    }
+  }
 }
