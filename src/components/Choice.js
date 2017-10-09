@@ -112,7 +112,7 @@ function Choice({ before, options, nextEl }) {
         ? `${option.prefix}:`
         : ''}</div>
           <div class="${styles.card}" style="transform: rotate(${angle}deg); background-image: url(${cardBG})">
-            <div class="${option.label.length < 40
+            <div class="${option.label.length < 38
               ? styles.handwriting
               : styles.smallerHandwriting}">${option.label}</div>
           </div>
