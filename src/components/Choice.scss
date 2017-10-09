@@ -10,32 +10,16 @@
       padding-bottom: 100vh;
     }
 
-    &::before,
     &::after {
+      content: '';
       transform: translate(-50%, 0);
       position: absolute;
       left: 50%;
-    }
-
-    &::before {
-      content: 'I hope you know you can tap one of those cards up there';
-      bottom: 7rem;
-      border-radius: 0.5rem;
-      padding: 0.5rem 1rem;
-      width: 13rem;
-      background-color: #fff;
-      font-family: ABCSans;
-      font-size: 1rem;
-      text-align: center;
-    }
-
-    &::after {
-      content: '';
-      bottom: 2rem;
-      padding-bottom: 50%;
-      width: 8rem;
-      height: 0;
-      background-image: url('./up.png');
+      bottom: 1rem;
+      width: 31.5625rem;
+      max-width: 92.5%;
+      padding-bottom: 51.68316832%;
+      background-image: url(./scroll-up.svg);
       background-position: bottom center;
       background-repeat: no-repeat;
       background-size: 100% auto;

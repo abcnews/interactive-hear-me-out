@@ -5,7 +5,8 @@
 .graphic {
   margin: 4rem auto 0;
   width: 17.5rem;
-  height: 16rem;
+  max-width: 100%;
+  padding-bottom: 91.42857143%;
   background-image: url(./sign-up.svg);
   background-repeat: no-repeat;
   background-size: 100% auto;
