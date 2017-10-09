@@ -17,6 +17,7 @@ const NEXT_IN_CONFIG = {
 const TAPE_BGS = [require('./tape-a.png'), require('./tape-b.png'), require('./tape-c.png')];
 const CARD_BGS = [require('./card-a.png'), require('./card-b.png'), require('./card-c.png')];
 
+const portraitOrientationMQL = window.matchMedia('(orientation: portrait)');
 let nextId = 0;
 let isScrolling;
 
@@ -51,24 +52,22 @@ function Choice({ before, options, nextEl }) {
 
         api.play();
 
-        if (!api.hasNativeUI) {
+        if (portraitOrientationMQL.matches && !api.hasNativeUI) {
           isScrolling = true;
           scrollIn(view.embed, EMBED_IN_CONFIG, () => {
             isScrolling = false;
             view.embed.querySelector('.VideoPlayer-playback').focus();
           });
-        }
 
-        if (view.nextEl && !view.onEnd) {
-          view.onEnd = () => {
-            if (!api.hasNativeUI) {
+          if (view.nextEl && !view.onEnd) {
+            view.onEnd = () => {
               isScrolling = true;
               scrollIn(view.nextEl, NEXT_IN_CONFIG, () => {
                 isScrolling = false;
               });
-            }
-          };
-          view.embed.querySelector('video').addEventListener('ended', view.onEnd);
+            };
+            view.embed.querySelector('video').addEventListener('ended', view.onEnd);
+          }
         }
       }
     });
