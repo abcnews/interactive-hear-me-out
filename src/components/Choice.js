@@ -133,10 +133,12 @@ function Choice({ before, isSkeumorphic = true, nextEl, options }) {
     };
   });
 
+  const hasUnmutedVideo = views.filter(view => !!view.embed.querySelector('video[muted]')).length < views.length;
+
   const root = html`
-    <div class="${styles.root}${isSkeumorphic ? ` ${styles.isSkeumorphic}` : ''}${isFirst
+    <div class="${styles.root}${hasUnmutedVideo ? ` ${styles.hasUnmutedVideo}` : ''}${isFirst
     ? ` ${styles.isFirst}`
-    : ''} u-full">
+    : ''}${isSkeumorphic ? ` ${styles.isSkeumorphic}` : ''} u-full">
       <div class="u-layout u-richtext-invert">
         ${before}
         <ul class="u-pull" role="tablist">

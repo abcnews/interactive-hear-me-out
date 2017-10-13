@@ -55,6 +55,9 @@
 .hasActive {
 }
 
+.hasUnmutedVideo {
+}
+
 .isFirst {
 }
 
@@ -71,12 +74,15 @@
     content: 'choose a question:';
     display: block;
     margin-top: 1.5rem;
+    font-size: 0.875rem;
+  }
+
+  .root.hasUnmutedVideo.isFirst &::after {
     padding-top: 2.875rem;
     background-image: url(./headphones.svg);
     background-position: top center;
     background-repeat: no-repeat;
     background-size: 3rem 2.5rem;
-    font-size: 0.875rem;
 
     @media (min-width: 43.75rem) {
       padding-top: 3.5rem;
