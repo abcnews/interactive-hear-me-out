@@ -21,7 +21,7 @@ const portraitOrientationMQL = window.matchMedia('(orientation: portrait)');
 let nextId = 0;
 let isScrolling;
 
-function Choice({ before, isSkeumorphic = true, nextEl, options }) {
+function Choice({ before, isSkeumorphic, nextEl, options }) {
   const isFirst = nextId === 0;
   let activeIndex;
 

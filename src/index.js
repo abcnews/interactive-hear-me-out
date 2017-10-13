@@ -3,6 +3,9 @@ const Choice = require('./components/Choice');
 const SignUp = require('./components/SignUp');
 
 function init(api) {
+  const isSkeumorphicMetaEl = api.utils.dom.$('meta[name="is-skeumorphic]');
+  const isSkeumorphic = isSkeumorphicMetaEl && isSkeumorphicMetaEl.getAttribute('content') === 'true';
+
   api.utils.anchors.getSections('choice').forEach(section => {
     const before = [];
     const options = [];
@@ -31,8 +34,9 @@ function init(api) {
       section.substituteWith(
         Choice({
           before,
-          options,
-          nextEl: section.endNode.nextSibling
+          isSkeumorphic,
+          nextEl: section.endNode.nextSibling,
+          options
         }),
         []
       );
