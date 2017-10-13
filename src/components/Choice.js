@@ -21,7 +21,7 @@ const portraitOrientationMQL = window.matchMedia('(orientation: portrait)');
 let nextId = 0;
 let isScrolling;
 
-function Choice({ before, options, nextEl }) {
+function Choice({ before, isSkeumorphic = true, nextEl, options }) {
   const isFirst = nextId === 0;
   let activeIndex;
 
@@ -134,7 +134,9 @@ function Choice({ before, options, nextEl }) {
   });
 
   const root = html`
-    <div class="${styles.root}${isFirst ? ` ${styles.isFirst}` : ''} u-full">
+    <div class="${styles.root}${isSkeumorphic ? ` ${styles.isSkeumorphic}` : ''}${isFirst
+    ? ` ${styles.isFirst}`
+    : ''} u-full">
       <div class="u-layout u-richtext-invert">
         ${before}
         <ul class="u-pull" role="tablist">
