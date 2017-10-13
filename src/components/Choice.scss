@@ -111,10 +111,6 @@
   vertical-align: top;
   transition: opacity 0.5s;
 
-  .root:not(.isSkeumorphic) & {
-    background-color: black;
-  }
-
   &[aria-selected='false'] {
     cursor: pointer;
 
@@ -168,7 +164,6 @@
   }
 
   .root:not(.isSkeumorphic) & {
-    margin-top: 1rem;
     background-image: none !important;
   }
 }
@@ -178,17 +173,31 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 10rem;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
 
   .root.isSkeumorphic & {
     height: 12.5rem;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
   }
 
   .root:not(.isSkeumorphic) & {
     transform: none !important;
+    margin-top: 0.5rem;
+    border: 0.0625rem solid grey;
+    height: 10rem;
+    background-color: black;
     background-image: none !important;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      bottom: 0;
+      left: 1rem;
+      right: 1rem;
+      height: 4rem;
+      box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.5);
+    }
   }
 
   :focus &::before {
