@@ -17,7 +17,7 @@
     "start": "aunty serve"
   },
   "devDependencies": {
-    "@abcnews/aunty": "5.2.x"
+    "@abcnews/aunty": "5.7.x"
   },
   "dependencies": {
     "bel": "^5.1.1",
