@@ -200,15 +200,24 @@
     }
   }
 
-  :focus &::before {
+  :focus &::after {
     content: '';
     position: absolute;
     top: 0;
-    left: 1.25%;
-    width: 97.5%;
-    height: 95%;
     outline: auto;
     outline: -webkit-focus-ring-color auto 5px;
+
+    .root.isSkeumorphic & {
+      left: 1.25%;
+      width: 97.5%;
+      height: 95%;
+    }
+
+    .root:not(.isSkeumorphic) & {
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
