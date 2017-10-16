@@ -17,9 +17,12 @@ const NEXT_IN_CONFIG = {
 const TAPE_BGS = [require('./tape-a.png'), require('./tape-b.png'), require('./tape-c.png')];
 const CARD_BGS = [require('./card-a.png'), require('./card-b.png'), require('./card-c.png')];
 
+const CLIENT_ID = Date.now();
+
 const portraitOrientationMQL = window.matchMedia('(orientation: portrait)');
 let nextId = 0;
 let isScrolling;
+let activationCount = 0;
 
 function Choice({ before, isSkeumorphic, nextEl, options }) {
   const isFirst = nextId === 0;
@@ -76,14 +79,12 @@ function Choice({ before, isSkeumorphic, nextEl, options }) {
     root.classList.add(styles.hasActive);
 
     // Track activations
-    if (window.ABC && ABC.News && ABC.News.Logger) {
-      ABC.News.Logger.log(
-        'interactive-hear-me-out',
-        (event.currentTarget || event.target).textContent.replace(':', ': '),
-        { path: location.pathname },
-        true
-      );
-    }
+    track('Card activated', {
+      title: (event.currentTarget || event.target).textContent.replace(':', ': '),
+      hasUnmutedVideo,
+      isSkeumorphic,
+      activationCount: ++activationCount
+    });
   }
 
   before.forEach(el => el.classList.add(styles.before));
@@ -153,11 +154,36 @@ function Choice({ before, isSkeumorphic, nextEl, options }) {
     </div>
   `;
 
+  if (isFirst) {
+    // Track visit
+    track('First choice loaded', {
+      hasUnmutedVideo,
+      isSkeumorphic
+    });
+  }
+
   return root;
 }
 
 function scrollIn(el, options = {}, callback) {
   setTimeout(scrollIntoView.bind(null, el, options, callback), options.delay);
+}
+
+function track(type, data = {}) {
+  if (window.ABC && ABC.News && ABC.News.Logger) {
+    ABC.News.Logger.log(
+      'interactive-hear-me-out',
+      type,
+      Object.assign(
+        {
+          clientId: CLIENT_ID,
+          path: location.pathname
+        },
+        data
+      ),
+      true
+    );
+  }
 }
 
 module.exports = Choice;
