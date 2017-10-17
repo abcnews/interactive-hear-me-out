@@ -240,7 +240,7 @@
     display: none;
   }
 
-  > div {
+  > [class*='u-pull'] {
     margin-bottom: inherit;
     width: auto;
 
@@ -266,5 +266,19 @@
 
   > :last-child {
     margin-bottom: 0;
+  }
+}
+
+:global [role='tabpanel'] > .is-pullquote {
+  margin-bottom: 2rem;
+
+  p {
+    color: #a5daf3;
+    font-size: 1.625rem;
+  }
+
+  footer {
+    color: #d2d2d2;
+    font-size: 1.25rem;
   }
 }
