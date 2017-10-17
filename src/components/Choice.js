@@ -81,7 +81,6 @@ function Choice({ before, isSkeumorphic, nextEl, options }) {
     // Track activations
     track('Card activated', {
       title: (event.currentTarget || event.target).textContent.replace(':', ': '),
-      hasUnmutedVideo,
       isSkeumorphic,
       activationCount: ++activationCount
     });
@@ -134,12 +133,10 @@ function Choice({ before, isSkeumorphic, nextEl, options }) {
     };
   });
 
-  const hasUnmutedVideo = views.filter(view => !!view.embed.querySelector('video[muted]')).length < views.length;
-
   const root = html`
-    <div class="${styles.root}${hasUnmutedVideo ? ` ${styles.hasUnmutedVideo}` : ''}${isFirst
-    ? ` ${styles.isFirst}`
-    : ''}${isSkeumorphic ? ` ${styles.isSkeumorphic}` : ''} u-full">
+    <div class="${styles.root}${isFirst ? ` ${styles.isFirst}` : ''}${isSkeumorphic
+    ? ` ${styles.isSkeumorphic}`
+    : ''} u-full">
       <div class="u-layout u-richtext-invert">
         ${before}
         <ul class="u-pull" role="tablist">
@@ -156,10 +153,7 @@ function Choice({ before, isSkeumorphic, nextEl, options }) {
 
   if (isFirst) {
     // Track visit
-    track('First choice loaded', {
-      hasUnmutedVideo,
-      isSkeumorphic
-    });
+    track('First choice loaded', { isSkeumorphic });
   }
 
   return root;
