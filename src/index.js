@@ -50,7 +50,7 @@ function initWithExperiment(api) {
   }, 2000);
 }
 
-function init(api, isSkeumorphic) {
+function init(api, isSkeuomorphic) {
   api.utils.anchors.getSections('choice').forEach(section => {
     const before = [];
     const options = [];
@@ -79,7 +79,7 @@ function init(api, isSkeumorphic) {
       section.substituteWith(
         Choice({
           before,
-          isSkeumorphic,
+          isSkeuomorphic,
           nextEl: section.endNode.nextSibling,
           options
         }),

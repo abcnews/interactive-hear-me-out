@@ -58,7 +58,7 @@
 .isFirst {
 }
 
-.isSkeumorphic {
+.isSkeuomorphic {
 }
 
 .isUsed {
@@ -74,7 +74,7 @@
     font-size: 0.875rem;
   }
 
-  .root.isSkeumorphic.isFirst &::after {
+  .root.isSkeuomorphic.isFirst &::after {
     content: 'choose a question card';
     font-family: ABCSerif, sans-serif;
     font-style: italic;
@@ -134,7 +134,7 @@
   font-style: italic;
   white-space: nowrap;
 
-  .root.isSkeumorphic & {
+  .root.isSkeuomorphic & {
     transform: translate(-50%, -50%);
     position: absolute;
     top: 0;
@@ -147,7 +147,7 @@
     background-size: 100%;
   }
 
-  .root:not(.isSkeumorphic) & {
+  .root:not(.isSkeuomorphic) & {
     background-image: none !important;
   }
 }
@@ -158,13 +158,13 @@
   flex-direction: column;
   justify-content: center;
 
-  .root.isSkeumorphic & {
+  .root.isSkeuomorphic & {
     height: 12.5rem;
     background-repeat: no-repeat;
     background-size: 100% auto;
   }
 
-  .root:not(.isSkeumorphic) & {
+  .root:not(.isSkeuomorphic) & {
     transform: none !important;
     margin-top: 0.5rem;
     border: 0.0625rem solid grey;
@@ -191,13 +191,13 @@
     outline: auto;
     outline: -webkit-focus-ring-color auto 5px;
 
-    .root.isSkeumorphic & {
+    .root.isSkeuomorphic & {
       left: 1.25%;
       width: 97.5%;
       height: 95%;
     }
 
-    .root:not(.isSkeumorphic) & {
+    .root:not(.isSkeuomorphic) & {
       left: 0;
       width: 100%;
       height: 100%;
@@ -214,7 +214,7 @@
   font-size: 2.5rem;
   line-height: 1.25;
 
-  .root.isSkeumorphic & {
+  .root.isSkeuomorphic & {
     color: rgba(19, 26, 49, 0.8);
   }
 }

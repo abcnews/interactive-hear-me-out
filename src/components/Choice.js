@@ -24,7 +24,7 @@ let nextId = 0;
 let isScrolling;
 let activationCount = 0;
 
-function Choice({ before, isSkeumorphic, nextEl, options }) {
+function Choice({ before, isSkeuomorphic, nextEl, options }) {
   const isFirst = nextId === 0;
   let activeIndex;
 
@@ -81,7 +81,7 @@ function Choice({ before, isSkeumorphic, nextEl, options }) {
     // Track activations
     track('Card activated', {
       title: (event.currentTarget || event.target).textContent.replace(':', ': '),
-      isSkeumorphic,
+      isSkeumorphic: isSkeuomorphic, // TODO: fix typo in tracking ahead of next story launch
       activationCount: ++activationCount
     });
   }
@@ -134,8 +134,8 @@ function Choice({ before, isSkeumorphic, nextEl, options }) {
   });
 
   const root = html`
-    <div class="${styles.root}${isFirst ? ` ${styles.isFirst}` : ''}${isSkeumorphic
-    ? ` ${styles.isSkeumorphic}`
+    <div class="${styles.root}${isFirst ? ` ${styles.isFirst}` : ''}${isSkeuomorphic
+    ? ` ${styles.isSkeuomorphic}`
     : ''} u-full">
       <div class="u-layout u-richtext-invert">
         ${before}
@@ -153,7 +153,7 @@ function Choice({ before, isSkeumorphic, nextEl, options }) {
 
   if (isFirst) {
     // Track visit
-    track('First choice loaded', { isSkeumorphic });
+    track('First choice loaded', { isSkeumorphic: isSkeuomorphic }); // TODO: fix typo in tracking ahead of next story launch
   }
 
   return root;
