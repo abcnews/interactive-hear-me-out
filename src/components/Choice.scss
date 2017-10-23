@@ -58,7 +58,7 @@
 .isFirst {
 }
 
-.isSkeuomorphic {
+.isVariant {
 }
 
 .isUsed {
@@ -68,17 +68,13 @@
   text-align: center;
 
   .root.isFirst &::after {
-    content: 'choose a question:';
+    content: 'choose a question card';
     display: block;
     margin-top: 1.5rem;
-    font-size: 0.875rem;
-  }
-
-  .root.isSkeuomorphic.isFirst &::after {
-    content: 'choose a question card';
     font-family: ABCSerif, sans-serif;
     font-style: italic;
     font-weight: normal;
+    font-size: 0.875rem;
   }
 }
 
@@ -128,28 +124,21 @@
 }
 
 .tape {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  padding: 0.5rem 1.5rem;
+  min-width: 12rem;
+  min-height: 2.5rem;
+  background-repeat: no-repeat;
+  background-size: 100%;
   color: white;
   font-family: ABCSerif, sans-serif;
   font-size: 1.125rem;
   font-style: italic;
   white-space: nowrap;
-
-  .root.isSkeuomorphic & {
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 0;
-    left: 50%;
-    z-index: 1;
-    padding: 0.5rem 1.5rem;
-    min-width: 12rem;
-    min-height: 2.5rem;
-    background-repeat: no-repeat;
-    background-size: 100%;
-  }
-
-  .root:not(.isSkeuomorphic) & {
-    background-image: none !important;
-  }
 }
 
 .card {
@@ -157,51 +146,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  .root.isSkeuomorphic & {
-    height: 12.5rem;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-  }
-
-  .root:not(.isSkeuomorphic) & {
-    transform: none !important;
-    margin-top: 0.5rem;
-    border: 0.0625rem solid grey;
-    height: 10rem;
-    background-color: black;
-    background-image: none !important;
-
-    &::before {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      bottom: 0;
-      left: 1rem;
-      right: 1rem;
-      height: 4rem;
-      box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.5);
-    }
-  }
+  height: 12.5rem;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
 
   :focus &::after {
     content: '';
     position: absolute;
     top: 0;
+    left: 1.25%;
     outline: auto;
     outline: -webkit-focus-ring-color auto 5px;
-
-    .root.isSkeuomorphic & {
-      left: 1.25%;
-      width: 97.5%;
-      height: 95%;
-    }
-
-    .root:not(.isSkeuomorphic) & {
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+    width: 97.5%;
+    height: 95%;
   }
 }
 
@@ -209,14 +166,10 @@
   transform: scale(1.2, 1);
   margin: 1.25rem 0 1.5rem;
   padding: 0 3rem;
-  color: white;
+  color: rgba(19, 26, 49, 0.8);
   font-family: 'Sue Ellen Francisco', cursive;
   font-size: 2.5rem;
   line-height: 1.25;
-
-  .root.isSkeuomorphic & {
-    color: rgba(19, 26, 49, 0.8);
-  }
 }
 
 .smallerHandwriting {
