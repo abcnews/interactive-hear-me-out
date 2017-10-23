@@ -227,7 +227,17 @@
   }
 }
 
-:global [role='tabpanel'] > .is-pullquote {
+:global [role='tabpanel'] > .Quote:not(.is-pullquote) {
+  p {
+    color: #a5daf3;
+  }
+
+  footer {
+    color: #d2d2d2;
+  }
+}
+
+:global [role='tabpanel'] > .Quote.is-pullquote {
   margin-bottom: 2rem;
 
   p {
