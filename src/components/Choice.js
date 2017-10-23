@@ -153,7 +153,7 @@ function Choice({ before, isVariant = false, nextEl, options }) {
 
   if (isFirst) {
     // Track visit
-    track('First choice loaded', { isVariant });
+    track('First choice loaded', { activationCount, isVariant });
   }
 
   return root;
