@@ -113,7 +113,9 @@ function Choice({ before, isVariant = false, nextEl, options }) {
           <div class="${styles.card}" style="transform: rotate(${angle}deg); background-image: url(${cardBG})">
             <div class="${option.label.length < 38
               ? styles.handwriting
-              : styles.smallerHandwriting}">${option.label}</div>
+              : option.label.length < 54
+                ? styles.smallerHandwriting
+                : styles.smallestHandwriting}">${option.label}</div>
           </div>
         </button>
       `,
