@@ -23,6 +23,7 @@ const portraitOrientationMQL = window.matchMedia('(orientation: portrait)');
 let nextId = 0;
 let isScrolling;
 let activationCount = 0;
+let lastActivatedAPI = null;
 
 function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, options }) {
   const isFirst = nextId === 0;
@@ -31,6 +32,11 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
   function activate(nextIndex, event) {
     if (isScrolling) {
       return;
+    }
+
+    if (lastActivatedAPI) {
+      lastActivatedAPI.pause();
+      lastActivatedAPI = null;
     }
 
     if (nextIndex === activeIndex) {
@@ -52,6 +58,7 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
 
       if (nextIndex === index) {
         activeIndex = nextIndex;
+        lastActivatedAPI = api;
 
         if (!hasManualPlayback) {
           api.play();
