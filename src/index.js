@@ -54,6 +54,7 @@ function init(api, isVariant) {
   api.utils.anchors.getSections('choice').forEach(section => {
     const before = [];
     const options = [];
+    const hasManualPlayback = section.configSC.indexOf('manual') > -1;
 
     section.betweenNodes.filter(node => api.utils.dom.isElement(node)).forEach(el => {
       if (el.className.indexOf('VideoEmbed') === 0) {
@@ -79,6 +80,7 @@ function init(api, isVariant) {
       section.substituteWith(
         Choice({
           before,
+          hasManualPlayback,
           isVariant,
           nextEl: section.endNode.nextSibling,
           options

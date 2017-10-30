@@ -24,7 +24,7 @@ let nextId = 0;
 let isScrolling;
 let activationCount = 0;
 
-function Choice({ before, isVariant = false, nextEl, options }) {
+function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, options }) {
   const isFirst = nextId === 0;
   let activeIndex;
 
@@ -53,7 +53,9 @@ function Choice({ before, isVariant = false, nextEl, options }) {
       if (nextIndex === index) {
         activeIndex = nextIndex;
 
-        api.play();
+        if (!hasManualPlayback) {
+          api.play();
+        }
 
         if (!api.hasNativeUI) {
           isScrolling = true;
