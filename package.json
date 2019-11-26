@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "bel": "^5.1.1",
-    "firebase": "^4.5.1",
     "scroll-into-view": "^1.9.1"
   }
 }
