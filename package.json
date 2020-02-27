@@ -8,8 +8,8 @@
     "Colin Gourlay <Gourlay.Colin@abc.net.au>"
   ],
   "aunty": {
-    "type": "basic-app",
-    "devServer": {
+    "type": "basic",
+    "serve": {
       "hot": false
     }
   },
@@ -17,7 +17,7 @@
     "start": "aunty serve"
   },
   "devDependencies": {
-    "@abcnews/aunty": "5.7.x"
+    "@abcnews/aunty": "^10.9.0"
   },
   "dependencies": {
     "bel": "^5.1.1",
