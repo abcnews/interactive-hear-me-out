@@ -1,6 +1,6 @@
-const html = require('bel');
-const scrollIntoView = require('scroll-into-view');
-const styles = require('./Choice.scss');
+const html = require("bel");
+const scrollIntoView = require("scroll-into-view");
+const styles = require("./Choice.scss");
 
 const EMBED_IN_CONFIG = {
   delay: 250
@@ -14,18 +14,32 @@ const NEXT_IN_CONFIG = {
   delay: 500
 };
 
-const TAPE_BGS = [require('./tape-a.png'), require('./tape-b.png'), require('./tape-c.png')];
-const CARD_BGS = [require('./card-a.png'), require('./card-b.png'), require('./card-c.png')];
+const TAPE_BGS = [
+  require("./tape-a.png"),
+  require("./tape-b.png"),
+  require("./tape-c.png")
+];
+const CARD_BGS = [
+  require("./card-a.png"),
+  require("./card-b.png"),
+  require("./card-c.png")
+];
 
 const CLIENT_ID = Date.now();
 
-const portraitOrientationMQL = window.matchMedia('(orientation: portrait)');
+const portraitOrientationMQL = window.matchMedia("(orientation: portrait)");
 let nextId = 0;
 let isScrolling;
 let activationCount = 0;
 let lastActivatedAPI = null;
 
-function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, options }) {
+function Choice({
+  before,
+  hasManualPlayback = false,
+  isVariant = false,
+  nextEl,
+  options
+}) {
   const isFirst = nextId === 0;
   let activeIndex;
 
@@ -40,9 +54,9 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
     }
 
     if (nextIndex === activeIndex) {
-      views[activeIndex].tab.setAttribute('aria-selected', 'false');
-      views[activeIndex].panel.setAttribute('aria-hidden', 'true');
-      views[activeIndex].embed.querySelector('.VideoPlayer').api.pause();
+      views[activeIndex].tab.setAttribute("aria-selected", "false");
+      views[activeIndex].panel.setAttribute("aria-hidden", "true");
+      views[activeIndex].embed.querySelector(".VideoPlayer").api.pause();
 
       activeIndex = null;
       root.classList.remove(styles.hasActive);
@@ -51,10 +65,16 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
     }
 
     views.forEach((view, index) => {
-      const api = view.embed.querySelector('.VideoPlayer').api;
+      const api = view.embed.querySelector(".VideoPlayer").api;
 
-      view.tab.setAttribute('aria-selected', nextIndex === index ? 'true' : 'false');
-      view.panel.setAttribute('aria-hidden', nextIndex === index ? 'false' : 'true');
+      view.tab.setAttribute(
+        "aria-selected",
+        nextIndex === index ? "true" : "false"
+      );
+      view.panel.setAttribute(
+        "aria-hidden",
+        nextIndex === index ? "false" : "true"
+      );
 
       if (nextIndex === index) {
         activeIndex = nextIndex;
@@ -68,7 +88,7 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
           isScrolling = true;
           scrollIn(view.embed, EMBED_IN_CONFIG, () => {
             isScrolling = false;
-            view.embed.querySelector('.VideoPlayer-playback').focus();
+            view.embed.querySelector(".VideoPlayer-playback").focus();
           });
 
           if (view.nextEl && portraitOrientationMQL.matches && !view.onEnd) {
@@ -78,7 +98,9 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
                 isScrolling = false;
               });
             };
-            view.embed.querySelector('video').addEventListener('ended', view.onEnd);
+            view.embed
+              .querySelector("video")
+              .addEventListener("ended", view.onEnd);
           }
         }
       }
@@ -86,13 +108,6 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
 
     root.classList.add(styles.isUsed);
     root.classList.add(styles.hasActive);
-
-    // Track activations
-    track('Card activated', {
-      title: (event.currentTarget || event.target).textContent.replace(':', ': '),
-      isVariant,
-      activationCount: ++activationCount
-    });
   }
 
   before.forEach(el => el.classList.add(styles.before));
@@ -103,9 +118,15 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
 
   const views = options.map((option, index) => {
     const id = nextId++;
-    const angle = (0.5 + Math.random()) * (index % 2 ? oddRotationDirection : oddRotationDirection * -1);
-    const tapeBG = tapeBGs.length ? tapeBGs.splice(Math.floor(Math.random() * tapeBGs.length), 1) : TAPE_BGS[0];
-    const cardBG = cardBGs.length ? cardBGs.splice(Math.floor(Math.random() * cardBGs.length), 1) : CARD_BGS[0];
+    const angle =
+      (0.5 + Math.random()) *
+      (index % 2 ? oddRotationDirection : oddRotationDirection * -1);
+    const tapeBG = tapeBGs.length
+      ? tapeBGs.splice(Math.floor(Math.random() * tapeBGs.length), 1)
+      : TAPE_BGS[0];
+    const cardBG = cardBGs.length
+      ? cardBGs.splice(Math.floor(Math.random() * cardBGs.length), 1)
+      : CARD_BGS[0];
 
     return {
       tab: html`
@@ -115,16 +136,24 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
           role="tab"
           aria-controls="${styles.panel}_${id}"
           aria-selected="false"
-          onclick=${activate.bind(null, index)}>
-          <div class="${styles.tape}" style="background-image: url(${tapeBG})">${option.prefix
-        ? `${option.prefix}:`
-        : ''}</div>
-          <div class="${styles.card}" style="transform: rotate(${angle}deg); background-image: url(${cardBG})">
-            <div class="${option.label.length < 38
-              ? styles.handwriting
-              : option.label.length < 54
+          onclick=${activate.bind(null, index)}
+        >
+          <div class="${styles.tape}" style="background-image: url(${tapeBG})">
+            ${option.prefix ? `${option.prefix}:` : ""}
+          </div>
+          <div
+            class="${styles.card}"
+            style="transform: rotate(${angle}deg); background-image: url(${cardBG})"
+          >
+            <div
+              class="${option.label.length < 38
+                ? styles.handwriting
+                : option.label.length < 54
                 ? styles.smallerHandwriting
-                : styles.smallestHandwriting}">${option.label}</div>
+                : styles.smallestHandwriting}"
+            >
+              ${option.label}
+            </div>
           </div>
         </button>
       `,
@@ -134,9 +163,9 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
           id="${styles.panel}_${id}"
           role="tabpanel"
           aria-hidden="true"
-          aria-labelledby="${styles.tab}_${id}">
-          ${option.embed}
-          ${option.after}
+          aria-labelledby="${styles.tab}_${id}"
+        >
+          ${option.embed} ${option.after}
         </p>
       `,
       embed: option.embed,
@@ -145,14 +174,18 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
   });
 
   const root = html`
-    <div class="${styles.root}${isFirst ? ` ${styles.isFirst}` : ''}${isVariant ? ` ${styles.isVariant}` : ''} u-full">
+    <div
+      class="${styles.root}${isFirst ? ` ${styles.isFirst}` : ""}${isVariant
+        ? ` ${styles.isVariant}`
+        : ""} u-full"
+    >
       <div class="u-layout u-richtext-invert">
         ${before}
         <ul class="u-pull" role="tablist">
           ${views.map(
             view => html`
-          <li>${view.tab}</li>
-          `
+              <li>${view.tab}</li>
+            `
           )}
         </ul>
         ${views.map(view => view.panel)}
@@ -160,33 +193,11 @@ function Choice({ before, hasManualPlayback = false, isVariant = false, nextEl, 
     </div>
   `;
 
-  if (isFirst) {
-    // Track visit
-    track('First choice loaded', { activationCount, isVariant });
-  }
-
   return root;
 }
 
 function scrollIn(el, options = {}, callback) {
   setTimeout(scrollIntoView.bind(null, el, options, callback), options.delay);
-}
-
-function track(type, data = {}) {
-  if (window.ABC && ABC.News && ABC.News.Logger) {
-    ABC.News.Logger.log(
-      'interactive-hear-me-out',
-      type,
-      Object.assign(
-        {
-          clientId: CLIENT_ID,
-          path: location.pathname
-        },
-        data
-      ),
-      true
-    );
-  }
 }
 
 module.exports = Choice;
