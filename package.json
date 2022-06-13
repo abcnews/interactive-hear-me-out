@@ -1,27 +1,27 @@
 {
-  "name": "interactive-hear-me-out",
-  "version": "1.12.0",
-  "description": "A project generated from aunty's basic template.",
-  "license": "MIT",
-  "private": true,
-  "contributors": [
-    "Colin Gourlay <Gourlay.Colin@abc.net.au>"
-  ],
-  "aunty": {
-    "type": "basic",
-    "serve": {
-      "hot": false
-    }
-  },
-  "scripts": {
-    "start": "aunty serve"
-  },
-  "devDependencies": {
-    "@abcnews/aunty": "^12.1.3"
-  },
-  "dependencies": {
-    "@abcnews/env-utils": "^3.0.0",
-    "bel": "^5.1.1",
-    "scroll-into-view": "^1.9.1"
-  }
+	"name": "interactive-hear-me-out",
+	"version": "2.0.0",
+	"description": "A project generated from aunty's basic template.",
+	"license": "MIT",
+	"private": true,
+	"contributors": [
+		"Colin Gourlay <Gourlay.Colin@abc.net.au>"
+	],
+	"aunty": {
+		"type": "basic",
+		"serve": {
+			"hot": false
+		}
+	},
+	"scripts": {
+		"start": "aunty serve"
+	},
+	"devDependencies": {
+		"@abcnews/aunty": "^12.1.3"
+	},
+	"dependencies": {
+		"@abcnews/env-utils": "^3.0.0",
+		"bel": "^5.1.1",
+		"scroll-into-view": "^1.9.1"
+	}
 }
