@@ -1,5 +1,5 @@
-const html = require('bel');
-const styles = require('./SignUp.scss');
+import html from 'bel';
+import styles from './SignUp.scss';
 
 function SignUp({ formEl, className }) {
   formEl.className = className;
@@ -12,4 +12,4 @@ function SignUp({ formEl, className }) {
   `;
 }
 
-module.exports = SignUp;
+export default SignUp;

@@ -1,15 +1,21 @@
-require("./global.scss");
-const Choice = require("./components/Choice");
-const SignUp = require("./components/SignUp");
 
-function init(api, isVariant) {
-  api.utils.anchors.getSections("choice").forEach(section => {
+import {whenOdysseyLoaded} from '@abcnews/env-utils';
+import './global.scss';
+import Choice from './components/Choice';
+import SignUp from './components/SignUp';
+
+whenOdysseyLoaded.then(() => {
+  const { utils } = window.__ODYSSEY__;
+  const { getMarkers, getSections } = utils.mounts;
+  const { isElement } = utils.dom;
+
+  getSections("choice").forEach(section => {
     const before = [];
     const options = [];
-    const hasManualPlayback = section.configSC.indexOf("manual") > -1;
+    const hasManualPlayback = section.configString.indexOf("manual") > -1;
 
     section.betweenNodes
-      .filter(node => api.utils.dom.isElement(node))
+      .filter(node => isElement(node))
       .forEach(el => {
         if (el.className.indexOf("VideoEmbed") === 0) {
           const caption = el.querySelector(".Caption");
@@ -37,7 +43,6 @@ function init(api, isVariant) {
         Choice({
           before,
           hasManualPlayback,
-          isVariant,
           nextEl: section.endNode.nextSibling,
           options
         }),
@@ -46,7 +51,7 @@ function init(api, isVariant) {
     }
   });
 
-  api.utils.anchors.getMarkers("signup").forEach(marker => {
+  getMarkers("signup").forEach(marker => {
     const nextEl =
       marker.node.nextElementSibling || document.createElement("div");
     const className = nextEl.className.match(/u-richtext(?:-invert)?/);
@@ -60,12 +65,4 @@ function init(api, isVariant) {
       );
     }
   });
-}
-
-if (window.__ODYSSEY__) {
-  // initWithExperiment(window.__ODYSSEY__);
-  init(window.__ODYSSEY__);
-} else {
-  // window.addEventListener('odyssey:api', event => initWithExperiment(event.detail));
-  window.addEventListener("odyssey:api", event => init(event.detail));
-}
+});

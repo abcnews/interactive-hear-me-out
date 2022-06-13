@@ -1,6 +1,6 @@
-const html = require("bel");
-const scrollIntoView = require("scroll-into-view");
-const styles = require("./Choice.scss");
+import html from 'bel';
+import scrollIntoView from 'scroll-into-view';
+import styles from './Choice.scss';
 
 const EMBED_IN_CONFIG = {
   delay: 250
@@ -15,14 +15,14 @@ const NEXT_IN_CONFIG = {
 };
 
 const TAPE_BGS = [
-  require("./tape-a.png"),
-  require("./tape-b.png"),
-  require("./tape-c.png")
+  `${__webpack_public_path__}tape-a.png`,
+  `${__webpack_public_path__}tape-b.png`,
+  `${__webpack_public_path__}tape-c.png`
 ];
 const CARD_BGS = [
-  require("./card-a.png"),
-  require("./card-b.png"),
-  require("./card-c.png")
+  `${__webpack_public_path__}card-a.png`,
+  `${__webpack_public_path__}card-b.png`,
+  `${__webpack_public_path__}card-c.png`
 ];
 
 const CLIENT_ID = Date.now();
@@ -200,4 +200,4 @@ function scrollIn(el, options = {}, callback) {
   setTimeout(scrollIntoView.bind(null, el, options, callback), options.delay);
 }
 
-module.exports = Choice;
+export default Choice;
